@@ -1,0 +1,104 @@
+<div class="container">
+  <div class="page-header">
+    <h1 class="font-weight-bold display-4">
+      Create Orders
+    </h1>
+  </div>
+  <div class=" row row-cards">
+
+    <div class="col-lg-9">
+      <div class=" p-2">
+        <h1 class="page-title mb-4">
+          Products
+        </h1>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Select a customer</label>
+              <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="selectedUser">
+
+                <option *ngFor="let item of users" value="{{item.customer_id}}">{{item.customer_name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div *ngIf="selectedUser">
+
+          <div class="card-columns">
+
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;"
+              *ngFor="let item of products;let indx = index">
+              <div class="card-header">{{item.price | currency}}</div>
+              <div class="card-body">
+                <h5 class="card-title font-weight-bold">{{item.product_type_code}}</h5>
+                <button type="button" (click)="onAddProduct(item)"
+                  class="btn btn btn-success text-center float-right mb-2">Select</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-lg-3">
+
+      <div class=" p-2 ">
+        <h1 class="page-title">
+          Order resume
+        </h1>
+        <button type="button" (click)="onAddProduct(item)" class="btn btn btn-success text-center  mb-2">Clear</button>
+        <div class="order-resume">
+          <ul class="list-group card list-group-flush">
+            <li class="list-group-item" *ngFor="let item of addedProducts;let indx = index">
+              <p class="lead">{{item.product_type_code}}</p>
+              <p class="muted">{{item.price | currency}}</p>
+              <button type="button" (click)="onRemoveProduct(indx)"
+                class="btn btn-sm btn-danger float-right">Delete</button>
+            </li>
+
+          </ul>
+        </div>
+        <div>
+          <h3>Total: {{onGetTotal() | currency}}</h3>
+          <button type="button" (click)="toggleDialog()" class="btn btn btn-success text-center float-right mb-2">Place
+            Order</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p-dialog header="Place Order" class="bg-white" [(visible)]="display">
+  <div class="card">
+    <fieldset class="form-fieldset">
+      <div class="form-group">
+
+
+
+        <label class="form-label">Payment Method<span class="form-required"
+            [(ngModel)]="customer_payment_method_id">*</span></label>
+        <select class="custom-select" [(ngModel)]="customer_payment_method_id">
+          <option value="1">Credit</option>
+          <option value="2">Card</option>
+          <option value="3">Cash</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Order details<span class="form-required"
+            [(ngModel)]="other_order_details">*</span></label>
+        <input type="text" class="form-control">
+      </div>
+      <button type="button" (click)="onPlaceOrder()" class="btn btn btn-success text-center float-right mb-2">Place
+        Order</button>
+    </fieldset>
+  </div>
+</p-dialog>

@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between">
+      <h3 class="card-title">Orders</h3>
+
+    </div>
+
+    <div class="table-responsive">
+      <table class="table card-table table-striped table-hover table-vcenter">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Payment</th>
+            <th>Date Placed</th>
+            <th>Customer</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+
+            <td (click)="toggleDialog(order)">{{order.order_id}}</td>
+            <td (click)="toggleDialog(order)">
+              {{order.customer_payment_method_id === 1 ? "Credit" : order.customer_payment_method_id === 2 ? "Card" : "Cash" }}
+            </td>
+            <td (click)="toggleDialog(order)" class="text-nowrap">{{order.date_order_placed | date:'short' }}</td>
+            <td (click)="toggleDialog(order)" class="text-nowrap">{{getCustomerName(order.customer_id)}}</td>
+            <td (click)="toggleDialog(order)" class="text-nowrap"><strong>{{order.der_order_price | currency}}</strong>
+            </td>
+
+            <td class="w-1"><a href="#" class="icon"><i class="fe fe-trash"></i></a></td>
+
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<p-dialog header="Order Details" class="bg-white" [(visible)]="display" [style]="{width: '400px'}">
+
+  <div class="">
+
+    <div class="">
+      <div class="" *ngFor="let item of selectedOrder">
+
+        <div class="card text-white bg-info" style="min-width: 100px;">
+          <div class="card-header">Order Item</div>
+          <div class="card-body">
+            <h5 class="card-title">Product: {{getProductName(item.product_id)}}</h5>
+            <p class="card-text">Customer: {{getCustomerName(item.customer_id)}}</p>
+            <p class="card-text">Suplier: {{getSuplierName(item.supplier_id)}}</p>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>

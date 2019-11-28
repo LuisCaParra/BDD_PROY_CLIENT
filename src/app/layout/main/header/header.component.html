@@ -1,0 +1,13 @@
+<div class="header py-0">
+  <div class="container">
+    <div class="row d-flex  mx-0">
+      <a class="header-brand py-3" href="" [routerLink]="['/home']">
+        <img src="/assets/img/logo_flat.svg" class="header-brand-img" alt="VTC Sentry">
+      </a>
+      <app-menu class="col" [isMenuCollapsed]="isMenuCollapsed"></app-menu>
+      <a href="javascript:void(0)" class="header-toggler d-sm-none m-4" (click)="isMenuCollapsed = !isMenuCollapsed">
+        <span class="header-toggler-icon"></span>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between">
+      <h3 class="card-title">Suppliers</h3>
+      <button type="button" (click)="toggleDialog()" class="btn btn btn-success text-center">Add</button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table card-table table-striped table-vcenter">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+
+            <th>Details</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.supplier_id}}</td>
+            <td>{{user.supplier_name}}</td>
+
+            <td class="text-nowrap">{{user.other_supplier_details}}</td>
+            <td class="w-1"><a class="color-danger" (click)="onDelete(item.product_id)" class="icon"><i
+                  class="fe fe-trash text-danger"></i></a></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<p-dialog header="Place Order" class="bg-white" [(visible)]="display">
+
+  <form name="form" #f="ngForm" class="card p-4">
+
+
+    <div class="form-group">
+      <label class="form-label">Name</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="name" required>
+    </div>
+
+
+    <div class="form-group">
+      <label class="form-label">Details</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="details" required>
+    </div>
+
+
+
+
+
+    <div class="form-group py-4">
+      <button type="button" class="btn d-inline m-2  btn-secondary " (click)="onSave()">
+        Add
+      </button>
+    </div>
+  </form>
+</p-dialog>

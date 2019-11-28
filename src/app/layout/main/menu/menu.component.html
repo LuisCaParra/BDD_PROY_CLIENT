@@ -1,0 +1,22 @@
+<div class="row align-items-center collapse d-sm-flex " [ngClass]="{'show': isMenuCollapsed}">
+  <div class="col-sm order-sm-first">
+    <ul class="nav nav-tabs border-0 flex-column flex-sm-row">
+      <li class="nav-item">
+        <a class="nav-link" href="#" [routerLink]="['/home']" routerLinkActive="active">Store</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" [routerLink]="['/customers']" routerLinkActive="active">Customers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" [routerLink]="['/suppliers']" routerLinkActive="active">Suppliers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" [routerLink]="['/orders']" routerLinkActive="active">Orders</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" [routerLink]="['/products']" routerLinkActive="active">Products</a>
+      </li>
+    </ul>
+  </div>
+
+</div>
