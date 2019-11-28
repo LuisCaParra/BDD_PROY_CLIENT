@@ -1,5 +1,3 @@
-# Web Lottery Angular UI
-
 ## Install Dependencies
 ```
 npm install
